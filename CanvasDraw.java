@@ -42,6 +42,7 @@ public class CanvasDraw {
 				System.out.println();
 				String action = a.get(0);
 
+				// Check to see if canvas exists (exclude c and h commands)
 				if (!action.equals("C") 
 					&& !action.equals("c") 
 					&& !action.equals("Q") 

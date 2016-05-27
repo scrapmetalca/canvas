@@ -2,8 +2,7 @@ import java.io.*;
 import java.util.*;
 
 // Simple drawing canvas
-// Questions
-// 	Where is x=0, y=0? Top Left?
+//
 // Error handling
 // 	non-integer values
 // 	values outside of canvas
@@ -112,6 +111,8 @@ public class CanvasDraw {
 		}
 	}
 
+	// initialize the canvas to all blanks then add the borders
+
 	boolean initCanvas (char[][] canvas, Integer width, Integer height) {
 		// Initialize entire canvas to ' '
 		for( int i=0; i<width+2; i++) {
@@ -130,6 +131,8 @@ public class CanvasDraw {
 		return true;
 	}
 
+	// Get the data for the line, verify the data and then add the line
+	
 	String handleLine(char[][] canvas, ArrayList a, Integer width, Integer height) {
 		Integer x0, y0, x1, y1 = null;
 		if (a.size() != 5) {
@@ -161,6 +164,8 @@ public class CanvasDraw {
 		return "";
 	}
 
+	// Get the data for the rectangle, verify the data and then add the rectangle
+	
 	String handleRectangle(char[][] canvas, ArrayList a, Integer width, Integer height) {
 		Integer x0, y0, x1, y1 = null;
 		if (a.size() != 5) {
@@ -189,6 +194,8 @@ public class CanvasDraw {
 		return "";
 	}
 
+	// Get the data for the flood fill and then do the operation
+	
 	String handleBucket(char[][] canvas, ArrayList a) {
 		if (a.size() != 4) {
 			return "Not enough or too many arguments";
@@ -202,7 +209,8 @@ public class CanvasDraw {
 	}
 	
 	// Floodfill algorithm uses recursion to find all points
-		void floodFill(char[][] canvas, boolean[][] visited, int r, int c, char color) {
+	
+	void floodFill(char[][] canvas, boolean[][] visited, int r, int c, char color) {
 		// Quit if off the canvas:
 		if(r < 1 || r >= canvas.length - 1 || c < 1 || c >= canvas[0].length - 1) return;
 		 
@@ -223,6 +231,8 @@ public class CanvasDraw {
 		floodFill(canvas, visited, r, c-1, color);
 	}
 
+	// Add the line to the canvas
+	
 	String addLine(char[][] canvas, Integer x0, Integer y0, Integer x1, Integer y1) {
 		for( int i=x0; i<=x1; i++) {
 			for( int j=y0; j<=y1; j++) {
@@ -232,6 +242,8 @@ public class CanvasDraw {
 		return "";
 	}
 
+	// Add the rectangle to the canvas
+	
 	String addRectangle(char[][] canvas, Integer x0, Integer y0, Integer x1, Integer y1) {
 		for( int i=x0; i<=x1; i++) {
 			canvas[y0][i] = 'x';
@@ -244,6 +256,8 @@ public class CanvasDraw {
 		return "Created Rectangle";
 	}
 
+	// Draw the canvas
+	
 	void showCanvas(char[][] canvas, Integer height) {
 		for (int i=0; i<height+2; i++) {
 			String str = new String(canvas[i]);
